@@ -82,39 +82,39 @@ public class EventController {
                 .build());
 
         eventList.add(Event.builder()
-                .id(8175648L)
-                .category("sport")
-                .title("Swimming")
-                .description("Let's be the first who can swim in the ocean.")
-                .location("Phuket")
-                .date("July 12, 2022")
-                .time("15:00")
+                .id(123456L)
+                .category("gaming")
+                .title("league of legends")
+                .description("The good MOBA game.")
+                .location("CMU")
+                .date("July 25, 2022")
+                .time("12:00")
                 .petsAllowed(false)
-                .organizer("Ned")
+                .organizer("Riot")
                 .build());
 
         eventList.add(Event.builder()
-                .id(1002L)
-                .category("food")
-                .title("Canned Food Drive")
-                .description("Bring your canned food to donate to those in need.")
-                .location("Tin City")
-                .date("September 14, 2022")
-                .time("3:00")
-                .petsAllowed(true)
-                .organizer("Kahn Opiner")
+                .id(456123L)
+                .category("gaming")
+                .title("Valorant")
+                .description("The good FPS game.")
+                .location("CMU")
+                .date("July 25, 2022")
+                .time("12:00")
+                .petsAllowed(false)
+                .organizer("Riot")
                 .build());
 
         eventList.add(Event.builder()
-                .id(1003L)
-                .category("sustainability")
-                .title("Highway Cleanup")
-                .description("Help pick up trash along the highway.")
-                .location("Highway 50")
-                .date("July 22, 2022")
-                .time("11:00")
+                .id(456123L)
+                .category("movie")
+                .title("Arcane")
+                .description("The good movie.")
+                .location("CMU")
+                .date("July 25, 2022")
+                .time("12:00")
                 .petsAllowed(false)
-                .organizer("Brody Kill")
+                .organizer("Riot")
                 .build());
     }
 
@@ -127,10 +127,13 @@ public class EventController {
         Integer firstIndex = (page - 1) * perPage;
         List<Event> output = new ArrayList<>();
 
-        for (int i = firstIndex; i < firstIndex + perPage && i < eventList.size(); i++) {
-            output.add(eventList.get(i));
-        }
-
+        try {
+            for (int i = firstIndex; i < firstIndex + perPage && i < eventList.size(); i++) {
+                output.add(eventList.get(i));
+            }
+            return ResponseEntity.ok(eventList);
+        } catch (IndexOutOfBoundsException ex) {
             return ResponseEntity.ok(eventList);
         }
     }
+}
