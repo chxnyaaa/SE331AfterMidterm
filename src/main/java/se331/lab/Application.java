@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class Application {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(Application.class, args);
 	}
 
@@ -20,7 +19,8 @@ public class Application {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
-						.allowedOrigins("http://localhost:5173");
+						.allowedOrigins("http://localhost:5173")
+						.exposedHeaders("x-total-count");
 			}
 		};
 	}
